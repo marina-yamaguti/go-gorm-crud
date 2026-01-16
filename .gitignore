@@ -27,6 +27,14 @@ go.work.sum
 # env file
 .env
 
-# Editor/IDE
-# .idea/
-# .vscode/
+# macOS 
+.DS_Store
+
+# Docker volumes 
+postgres_data/
+
+# VS Code 
+.vscode/
+
+# Binaries
+main
