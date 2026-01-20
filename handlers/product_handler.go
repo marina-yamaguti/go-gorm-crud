@@ -12,13 +12,15 @@ type ProductHandler struct {
 	DB *gorm.DB
 }
 
-// CreateProduct godoc
+// / CreateProduct godoc
 // @Summary      Create a new product
+// @Description  Create a new product with the input payload
 // @Tags         products
 // @Accept       json
 // @Produce      json
 // @Param        product  body      models.Product  true  "Product Data"
 // @Success      201      {object}  models.Product
+// @Failure      400      {object}  map[string]string
 // @Router       /products [post]
 func (h *ProductHandler) CreateProduct(c *gin.Context) {
 	var product models.Product
@@ -44,9 +46,11 @@ func (h *ProductHandler) CreateProduct(c *gin.Context) {
 
 // GetProducts godoc
 // @Summary      Get all products
+// @Description  Retrieve a list of all products
 // @Tags         products
 // @Produce      json
 // @Success      200      {array}   models.Product
+// @Failure      500      {object}  map[string]string
 // @Router       /products [get]
 func (h *ProductHandler) GetProducts(c *gin.Context) {
 	var products []models.Product
