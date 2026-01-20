@@ -12,7 +12,14 @@ type ProductHandler struct {
 	DB *gorm.DB
 }
 
-// CREATE
+// CreateProduct godoc
+// @Summary      Create a new product
+// @Tags         products
+// @Accept       json
+// @Produce      json
+// @Param        product  body      models.Product  true  "Product Data"
+// @Success      201      {object}  models.Product
+// @Router       /products [post]
 func (h *ProductHandler) CreateProduct(c *gin.Context) {
 	var product models.Product
 
@@ -24,7 +31,7 @@ func (h *ProductHandler) CreateProduct(c *gin.Context) {
 
 	// 2. Create product in the database
 	result := h.DB.Create(&product)
-	
+
 	// 3. Handle potential errors
 	if result.Error != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": result.Error.Error()})
@@ -35,10 +42,15 @@ func (h *ProductHandler) CreateProduct(c *gin.Context) {
 	c.JSON(http.StatusCreated, product)
 }
 
-// READ
+// GetProducts godoc
+// @Summary      Get all products
+// @Tags         products
+// @Produce      json
+// @Success      200      {array}   models.Product
+// @Router       /products [get]
 func (h *ProductHandler) GetProducts(c *gin.Context) {
 	var products []models.Product
-	
+
 	// 1. Retrieve all products from the database
 	result := h.DB.Find(&products)
 
@@ -52,4 +64,12 @@ func (h *ProductHandler) GetProducts(c *gin.Context) {
 	c.JSON(http.StatusOK, products)
 }
 
-// TO DO: Implement UPDATE and DELETE handlers
+// UPDATE
+func (h *ProductHandler) UpdateProduct(c *gin.Context) {
+	// TO DO: Implement UPDATE handler
+}
+
+// DELETE
+func (h *ProductHandler) DeleteProduct(c *gin.Context) {
+	// TO DO: Implement DELETE handler
+}
