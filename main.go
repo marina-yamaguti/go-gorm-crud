@@ -36,6 +36,8 @@ func main() {
 	// Setup routes
 	router.POST("/products", productHandler.CreateProduct)
 	router.GET("/products", productHandler.GetProducts)
+	router.PUT("/products/:id", productHandler.UpdateProduct)
+	router.DELETE("/products/:id", productHandler.DeleteProduct)
 
 	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
